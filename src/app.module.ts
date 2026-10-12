@@ -1,9 +1,9 @@
+import { ConfigModule } from '@nestjs/config';
 import { Module } from '@nestjs/common';
 import { UserModule } from './user/user.module';
-import { databaseProviders } from './database/database.module';
 
 @Module({
-  imports: [UserModule],
-  providers: [...databaseProviders],
+  imports: [ConfigModule.forRoot(), UserModule],
+  providers: [],
 })
 export class AppModule {}

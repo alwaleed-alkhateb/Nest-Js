@@ -1,11 +1,8 @@
-import * as mongoose from 'mongoose';
+import { databaseProviders } from './provider/database.provider';
+import { Module } from '@nestjs/common';
 
-export const databaseProviders = [
-  {
-    provide: 'DATABASE_CONNECTION',
-    useFactory: (): Promise<typeof mongoose> =>
-      mongoose.connect(
-        'mongodb+srv://alwaledcs_db_user:ADMIN1234@cluster0.ni8crqh.mongodb.net/',
-      ),
-  },
-];
+@Module({
+  providers: [...databaseProviders],
+  exports: [...databaseProviders],
+})
+export class DatabaseModule {}
